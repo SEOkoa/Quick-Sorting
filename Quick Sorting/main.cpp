@@ -2,7 +2,7 @@
 #include <unistd.h>
 using namespace std;
 
-int input[100] = {0};
+int input[1000] = {0};
 
 int i, j = 0; // i = 숫자의 총 갯수 // j= 출력할 숫자의 위치
 int cnt = 0; // while문 안에서 해당 배열에 저장된 값 만큼 그래프 문자를 출력하고 초기화 하는걸 담당함.
@@ -21,14 +21,23 @@ void notice() {
 }
 
 void Clear() {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 1000; i++) {
         cout << endl;
     }
-}
+    }
 
 void Display() {
-    for (j = 0; j < i; j++ ) {
-        // 막대 그래프로 출럭. 나중에 함수화 해주기
+    
+ 
+    
+    
+   for (j = 0; j < i; j++ ) {
+        
+       cout << input[j];
+       
+       if ( input[j] < 10)
+           cout << " ";
+       
         while (1) {
             cout << "◼︎" ;
             cnt++;
@@ -36,10 +45,13 @@ void Display() {
             if ( cnt == input[j] ) {
                 cout << endl;
                 cnt = 0;
+                
                 break;
                 
             }}}
-    usleep(500 * 500);
+    
+   // usleep(200*200);
+
 }
 
 void Quicksort (int *input, int start, int end) {
@@ -53,9 +65,6 @@ void Quicksort (int *input, int start, int end) {
     l = end;        // 왼쪽으로 가면서 피벗보다 작은 값을 찾음
     
     while(k <= l) {
-        
-        Clear();
-        Display();
                 
         while ( k <= end && input[k] <= input[pivot] ) {
             k++;
@@ -89,18 +98,26 @@ void Quicksort (int *input, int start, int end) {
         Quicksort(input, start , l - 1);
         Quicksort(input, l + 1, end);
         
-        Clear();
-        Display();
+                
     }
 }
 
+ void Is_correct() {
+     
+    for (int f = 0; f < 1000; f++) {
+        
+        if ( input[f] > input[f + 1] )
+            Quicksort(input, 0, i - 1 );
+        
+    }
+}
 
 
 int main(int argc, const char * argv[]) {
  
     notice();
     
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
         scanf (" %d", &input[i]);
         
         if (input[i] == 0) {
@@ -112,10 +129,7 @@ int main(int argc, const char * argv[]) {
     
     Clear();
     
-    Quicksort(input, 0, i - 1);
+    Is_correct();
     
-    Clear();
-    Display();
-
     return 0;
 }
